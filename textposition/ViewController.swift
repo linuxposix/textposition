@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var outlineView: UIView!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     private var observer: NSObjectProtocol?
     
@@ -23,6 +24,12 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.registerKeyboardNotification()
+        self.setupOutlineView()
+    }
+    
+    private func setupOutlineView() {
+        self.outlineView.layer.borderWidth = 1 / UIScreen.main.scale
+        self.outlineView.layer.borderColor = UIColor.black.cgColor
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -83,6 +90,52 @@ class ViewController: UIViewController {
         } else {
             self.onCustomInput()
         }
+    }
+    
+    @IBAction func tapCustomAction(_ sender: Any) {
+        self.textView.resignFirstResponder()
+        self.textView.becomeFirstResponder()
+        
+        guard let window: UIWindow = UIApplication.shared.keyWindow else { return }
+
+        let allSubviews: [UIView] = window.subviews.flatMap(self.allSubviews)
+
+        self.makeViewGlitteringInARow(allSubviews)
+        print("Finished!")
+    }
+    
+    private func makeViewGlitteringInARow(_ views: [UIView]) {
+        DispatchQueue.global().async {
+            let group: DispatchGroup = DispatchGroup()
+            
+            views.forEach({ view in
+                group.wait()
+                group.enter()
+                
+                DispatchQueue.main.async {
+                    let originalAlpha: CGFloat = view.alpha
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        view.alpha = 0
+                    }, completion: { finish in
+                        UIView.animate(withDuration: 0.5, animations: {
+                            view.alpha = 1
+                        }, completion: { finish in
+                            view.alpha = originalAlpha
+                            group.leave()
+                        })
+                    })
+                }
+            })
+        }
+    }
+    
+    private func allSubviews(_ view: UIView) -> [UIView] {
+        var allViews: [UIView] = view.subviews.flatMap(self.allSubviews)
+        
+        allViews.append(view)
+        
+        return allViews
     }
     
     private func onCustomInput() {

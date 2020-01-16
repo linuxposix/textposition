@@ -29,7 +29,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Dgk-p4-2zZ" secondAttribute="trailing" constant="16" id="LIP-nj-uda"/>
                                     <constraint firstItem="Dgk-p4-2zZ" firstAttribute="centerY" secondItem="GP0-Ww-Ltg" secondAttribute="centerY" id="V3l-1b-hhc"/>
@@ -39,18 +39,27 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlI-9H-ygJ">
-                                <rect key="frame" x="348" y="44" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="283" y="44" width="111" height="30"/>
+                                <state key="normal" title="toggle keyboard"/>
                                 <connections>
                                     <action selector="tapButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wPc-LH-flc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QY0-zH-zrv">
+                                <rect key="frame" x="20" y="44" width="97" height="30"/>
+                                <state key="normal" title="custom action"/>
+                                <connections>
+                                    <action selector="tapCustomAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iN5-Sa-Wdk"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GP0-Ww-Ltg" secondAttribute="bottom" id="1dJ-fV-wjb"/>
+                            <constraint firstItem="QY0-zH-zrv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8M6-o3-9Ce"/>
                             <constraint firstItem="IlI-9H-ygJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X1r-Go-Ckt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GP0-Ww-Ltg" secondAttribute="trailing" id="Yf9-hk-Qzk"/>
+                            <constraint firstItem="QY0-zH-zrv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dLG-2R-GIX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IlI-9H-ygJ" secondAttribute="trailing" constant="20" id="hA1-1D-cWM"/>
                             <constraint firstItem="GP0-Ww-Ltg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yeW-ka-RNo"/>
                         </constraints>
@@ -58,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomConstraint" destination="1dJ-fV-wjb" id="mE7-nI-her"/>
+                        <outlet property="outlineView" destination="GP0-Ww-Ltg" id="SpN-Xo-Ksw"/>
                         <outlet property="textView" destination="Dgk-p4-2zZ" id="bmI-nN-R5L"/>
                     </connections>
                 </viewController>
